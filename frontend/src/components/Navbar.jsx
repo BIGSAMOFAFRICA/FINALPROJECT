@@ -1,4 +1,4 @@
-import { ShoppingCart, UserPlus, LogIn, LogOut, Lock } from "lucide-react";
+import { ShoppingCart, UserPlus, LogIn, LogOut, Lock , Home as HomeIcon  } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../stores/useUserStore";
 import { useCartStore } from "../stores/useCartStore";
@@ -17,13 +17,14 @@ const Navbar = () => {
 					</Link>
 
 					<nav className='flex flex-wrap items-center gap-4'>
-						<Link
-							to={"/"}
-							className='text-gray-300 hover:text-emerald-400 transition duration-300
-					 ease-in-out'
-						>
-							Home
-						</Link>
+					<Link
+	to={"/"}
+	className='text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out flex items-center'
+>
+	<HomeIcon size={18} className='mr-1' />
+	<span className='hidden sm:inline'>Home</span>
+</Link>
+
 						{user && (
 							<Link
 								to={"/cart"}

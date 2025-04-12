@@ -2,8 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { PlusCircle, Upload, Loader } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";
+import { toast } from "react-hot-toast";
 
-const categories = ["jeans", "t-shirts", "shoes", "glasses", "jackets", "suits", "bags"];
+
+const categories = ["jeans", "t-shirts", "shoes", "glasses", "jackets", "suits", "bags", "gadgets" , "wrist-watchs"];
 
 const CreateProductForm = () => {
 	const [newProduct, setNewProduct] = useState({
@@ -19,12 +21,16 @@ const CreateProductForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await createProduct(newProduct);
-			setNewProduct({ name: "", description: "", price: "", category: "", image: "" });
-		} catch {
-			console.log("error creating a product");
+		  await createProduct(newProduct);
+		  setNewProduct({ name: "", description: "", price: "", category: "", image: "" });
+	  
+		  toast.success(" Product added successfully!");
+		} catch (error) {
+		  console.log("error creating a product");
+		  toast.error(" Failed to create product. Try again!");
 		}
-	};
+	  };
+	  
 
 	const handleImageChange = (e) => {
 		const file = e.target.files[0];
